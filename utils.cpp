@@ -6,6 +6,7 @@
 using namespace std;
 
 ListaLigada *listaLigada = new ListaLigada();
+ListaDobleLigada *listaDobleLigada = new ListaDobleLigada();
 
 void displayWelcome()
 {
@@ -60,7 +61,7 @@ void displayMenu(bool flag)
         menuListaLigada(false);
         break;
     case 3:
-        /* code */
+        menuListaDobleLigada(false);
         break;
     case 4:
         /* code */
@@ -205,7 +206,6 @@ void showListaContigua(int maxLen, int *arreglo)
 
 void menuListaLigada(bool flag)
 {
-
     if (flag)
     {
         system("cls");
@@ -236,6 +236,41 @@ void menuListaLigada(bool flag)
         return;
     default:
         menuListaLigada(true);
+        break;
+    }
+}
+void menuListaDobleLigada(bool flag)
+{
+    if (flag)
+    {
+        system("cls");
+        cout << "Ingrese solo el numero entero de las opciones previas..." << endl;
+        cout << endl;
+    }
+    displayListOptions2();
+    int option = pickOption();
+    int data;
+    int data2;
+    switch (option)
+    {
+    case 1:
+        data = askForValue();
+        listaDobleLigada->add(data);
+        menuListaDobleLigada(false);
+        break;
+    case 2:
+        data2 = askForValue();
+        listaDobleLigada->remove(data2);
+        menuListaDobleLigada(false);
+        break;
+    case 3:
+        listaDobleLigada->show();
+        menuListaDobleLigada(false);
+        break;
+    case 4:
+        return;
+    default:
+        menuListaDobleLigada(true);
         break;
     }
 }

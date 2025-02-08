@@ -16,6 +16,7 @@ void showListaContigua(int, int *);
 
 void menuListaLigada(bool);
 int askForValue();
+void menuListaDobleLigada(bool);
 
 struct SimpleNode
 {
@@ -27,11 +28,10 @@ struct SimpleNode
 struct DobleLinkNode
 {
     int data;
-    DobleLinkNode *left=nullptr;
-    DobleLinkNode *right=nullptr;
+    DobleLinkNode *left = nullptr;
+    DobleLinkNode *right = nullptr;
     int id;
 };
-
 
 class ListaLigada
 {
@@ -53,7 +53,8 @@ public:
 class ListaDobleLigada
 {
 private:
-    SimpleNode *head = nullptr;
+    DobleLinkNode *head = nullptr;
+    DobleLinkNode *tail = nullptr;
     int size;
     int counter = 0;
     int getId();
@@ -66,7 +67,5 @@ public:
     int getSize();
     ~ListaDobleLigada();
 };
-
-
 
 #endif
