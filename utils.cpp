@@ -5,6 +5,8 @@
 #include <limits>
 using namespace std;
 
+ListaLigada *listaLigada = new ListaLigada();
+
 void displayWelcome()
 {
     system("cls");
@@ -55,7 +57,7 @@ void displayMenu(bool flag)
         listaContigua();
         break;
     case 2:
-        /* code */
+        menuListaLigada(false);
         break;
     case 3:
         /* code */
@@ -87,7 +89,7 @@ int pickOption()
 
 void listaContigua()
 {
-    int lista, n, i;
+    int n;
     int arreglo[10] = {};
 
     cout << endl
@@ -199,4 +201,56 @@ void showListaContigua(int maxLen, int *arreglo)
     }
     cout << endl
          << "--------------------------------------------------------" << endl;
+}
+
+void menuListaLigada(bool flag)
+{
+
+    if (flag)
+    {
+        system("cls");
+        cout << "Ingrese solo el numero entero de las opciones previas..." << endl;
+        cout << endl;
+    }
+    displayListOptions2();
+    int option = pickOption();
+    int data;
+    int data2;
+    switch (option)
+    {
+    case 1:
+        data = askForValue();
+        listaLigada->add(data);
+        menuListaLigada(false);
+        break;
+    case 2:
+        data2 = askForValue();
+        listaLigada->remove(data2);
+        menuListaLigada(false);
+        break;
+    case 3:
+        listaLigada->show();
+        menuListaLigada(false);
+        break;
+    case 4:
+        return;
+    default:
+        menuListaLigada(true);
+        break;
+    }
+}
+
+int askForValue()
+{
+    int result;
+    cout << "Ingrese un valor: ";
+    while (!(cin >> result))
+    {
+        cout << endl
+             << "Solo se aceptan numeros enteros.\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Ingrese un valor: ";
+    }
+    return result;
 }
