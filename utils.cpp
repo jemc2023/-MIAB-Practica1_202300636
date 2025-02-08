@@ -374,7 +374,7 @@ void removeListaAnexada(int maxLen, int *arreglo)
     if (index > maxLen)
     {
         cout << "Numero invalido..." << endl;
-        removeListaContigua(maxLen, arreglo);
+        removeListaAnexada(maxLen, arreglo);
     }
     for (int i = 0; i < maxLen; i++)
     {

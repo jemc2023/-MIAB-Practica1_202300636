@@ -24,7 +24,6 @@ void ListaDobleLigada::add(int data)
     DobleLinkNode *neoNode = new DobleLinkNode();
     neoNode->data = data;
     neoNode->id = this->getId();
-    cout << "EL NUEVO: " << neoNode->id;
     if (this->head == nullptr)
     {
         this->head = neoNode;
