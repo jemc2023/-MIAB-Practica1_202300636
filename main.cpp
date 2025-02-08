@@ -1,9 +1,14 @@
 #include <iostream>
-#include <string>
+#include "utils.cpp"
 using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    cout << "Hola cpp";
+    displayWelcome();
+    while (true)
+    {
+        displayMenu(false);
+        system("cls");
+    }
     return 0;
 }
