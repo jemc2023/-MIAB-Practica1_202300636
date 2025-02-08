@@ -18,6 +18,12 @@ void menuListaLigada(bool);
 int askForValue();
 void menuListaDobleLigada(bool);
 
+void listaAnexada();
+bool displayMenuListaAnexada(bool, int, int *);
+void addListaAnexada(int, int *);
+void removeListaAnexada(int, int *);
+void showListaAnexada(int, int *);
+
 struct SimpleNode
 {
     int data;

@@ -1,6 +1,6 @@
 #include "utils.h"
-#include <string>
 #include <iostream>
+#include <string>
 #include <stdlib.h>
 #include <limits>
 using namespace std;
@@ -64,7 +64,7 @@ void displayMenu(bool flag)
         menuListaDobleLigada(false);
         break;
     case 4:
-        /* code */
+        listaAnexada();
         break;
     case 5:
         exit(0);
@@ -188,10 +188,10 @@ void showListaContigua(int maxLen, int *arreglo)
 {
     system("cls");
     cout << "--------------------------------------------------------" << endl;
-    cout << "Index  |  ";
+    cout << "Index  |   ";
     for (int i = 0; i < maxLen; i++)
     {
-        cout << (i + 1) << "  |  ";
+        cout << (i + 1) << "  |   ";
     }
     cout << endl
          << "--------------------------------------------------------" << endl;
@@ -288,4 +288,136 @@ int askForValue()
         cout << "Ingrese un valor: ";
     }
     return result;
+}
+
+void listaAnexada()
+{
+    int lista[10] = {};
+    int n;
+    cout << endl
+         << "Ingrese el numero de elemntos (maximo 10): ";
+    while (!(cin >> n))
+    {
+        cout << "Solo se aceptan numeros enteros.\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    bool flagRepetition = displayMenuListaAnexada(false, n, lista);
+    while (flagRepetition)
+    {
+        flagRepetition = displayMenuListaAnexada(false, n, lista);
+    }
+}
+
+bool displayMenuListaAnexada(bool flag, int maxLen, int *arreglo)
+{
+    if (flag)
+    {
+        system("cls");
+        cout << "Ingrese solo el numero entero de las opciones previas..." << endl;
+        cout << endl;
+    }
+    displayListOptions2();
+    int option = pickOption();
+    switch (option)
+    {
+    case 1:
+        addListaAnexada(maxLen, arreglo);
+        break;
+    case 2:
+        removeListaAnexada(maxLen, arreglo);
+        break;
+    case 3:
+        showListaAnexada(maxLen, arreglo);
+        break;
+    case 4:
+        return false;
+    default:
+        return displayMenuListaAnexada(true, maxLen, arreglo);
+    }
+    return true;
+}
+
+void addListaAnexada(int maxLen, int *arreglo)
+{
+    for (int i = 0; i < maxLen; i++)
+    {
+        if (arreglo[i] != 0)
+        {
+            continue;
+        }
+        cout << "Ingrese un valor: ";
+        while (!(cin >> arreglo[i]))
+        {
+            cout << endl
+                 << "Solo se aceptan numeros enteros.\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Ingrese un valor: ";
+        }
+        break;
+    }
+}
+
+void removeListaAnexada(int maxLen, int *arreglo)
+{
+    int index = 0;
+    cout << "Ingrese el indice del arreglo a borrar: ";
+    while (!(cin >> index))
+    {
+        cout << endl
+             << "Solo se aceptan numeros enteros.\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Ingrese un nuevo valor: ";
+    }
+    if (index > maxLen)
+    {
+        cout << "Numero invalido..." << endl;
+        removeListaContigua(maxLen, arreglo);
+    }
+    for (int i = 0; i < maxLen; i++)
+    {
+        if (i == index - 1)
+        {
+            arreglo[i] = 0;
+        }
+    }
+}
+
+void showListaAnexada(int maxLen, int *arreglo)
+{
+    system("cls");
+    cout << string(130, '-') << endl;
+    cout << "Index  |       ";
+    for (int i = 0; i < maxLen; i++)
+    {
+        cout << (i + 1) << "      |       ";
+    }
+    cout << string(130, '-') << endl;
+    cout << "Valor  |      ";
+    for (int i = 0; i < maxLen; i++)
+    {
+        cout << arreglo[i] << "      |      ";
+    }
+    cout << string(130, '-') << endl;
+    cout << "       |       ";
+    for (int i = 0; i < maxLen; i++)
+    {
+        cout << "↑" << "      |       ";
+    }
+    cout << endl
+         << "NodoI  | ";
+    for (int i = 0; i < maxLen; i++)
+    {
+        if (arreglo[i] != 0)
+        {
+            cout << &arreglo[i] << " | ";
+        }
+        else
+        {
+            cout << "             | ";
+        }
+    }
+    cout << string(130, '-') << endl;
 }
